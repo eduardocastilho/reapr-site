@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ e.meta.title }} · {{ site.title }}{% endblock %}
+{% block main %}
+<section class="page-head">
+  <div class="wrap page-head-grid">
+    <div>
+      <h1>{{ e.meta.title }}</h1>
+      {% if e.meta.get('summary') %}<p class="lede">{{ e.meta.summary }}</p>{% endif %}
+    </div>
+    {% if site.avatar and e.slug == 'about' %}<img class="about-avatar" src="{{ base }}/static/{{ site.avatar }}" alt="Avatar of reapr" width="160" height="160">{% endif %}
+  </div>
+</section>
+<section class="tight">
+  <div class="wrap">
+    <div class="prose">{{ e.body_html | safe }}</div>
+  </div>
+</section>
+{% endblock %}

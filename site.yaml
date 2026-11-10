@@ -1,0 +1,22 @@
+# Configuração do site REAPR Labs
+title: REAPR Labs
+description: Notes, writeups and tools from the DFIR lab of Eduardo Castilho (reapr).
+
+# URL pública final, sem barra no fim. Usada em links canônicos e no feed.
+# Exemplos: https://reapr-labs.github.io  |  https://reapr.com.br
+url: https://reapr.com.br
+
+# Caminho base. Deixe "" para domínio próprio ou para o repositório <usuario>.github.io.
+# Para um repositório comum publicado em https://<usuario>.github.io/<repo>/, use "/<repo>".
+base_path: ""
+
+# Links do rodapé e do menu. Deixe vazio ("") para esconder.
+github: https://github.com/eduardocastilho
+linkedin: ""
+# Só preencha quando o e-mail existir de fato.
+email: ""
+
+# Avatar (opcional): arquivo dentro de static/, por exemplo avatar.png. Pixel art fica nítida.
+avatar: "avatar.jpg"
+
+author: Eduardo Castilho

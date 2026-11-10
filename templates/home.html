@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% import "_pixel.html" as px %}
+{% from "_index_rows.html" import rows %}
+{% block main %}
+<section class="hero">
+  <div class="sky" aria-hidden="true"><span class="star s1"></span><span class="star s2"></span><span class="star s3"></span><span class="star s4"></span><span class="star s5"></span><span class="moon"></span></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="label">Digital forensics · Incident response · Malware</p>
+      <h1 class="display">Notes, writeups and tools from a DFIR lab.</h1>
+      <p class="lede">REAPR is the handle of Eduardo Castilho. This is where I publish what I build and investigate while specializing in digital forensics and incident response, with the method and data behind each piece.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="{{ base }}/writeups/">▶ Read the writeups</a>
+        <a class="btn" href="{{ base }}/tools/">Browse the tools</a>
+      </div>
+    </div>
+    {% call px.window('~/lab — shell', 'term') %}
+<pre class="term-body"><span class="pr">reapr@lab:~$</span> whoami
+Eduardo Castilho (reapr)
+<span class="pr">reapr@lab:~$</span> cat focus.txt
+windows forensics · memory · malware
+<span class="pr">reapr@lab:~$</span> ls ./published
+{% if writeups %}{% for e in writeups[:3] %}{{ e.meta.get('id', e.slug) }}  {% endfor %}{% else %}(nothing yet, first case in progress){% endif %}
+
+<span class="pr">reapr@lab:~$</span> <span class="cursor">_</span></pre>
+    {% endcall %}
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 class="section-title"><span class="hash">#</span> What I work on</h2>
+    <div class="cards">
+      <div class="card">{{ px.icon('lens', 40) }}<h3>Forensics</h3><p>How Windows artifacts record activity, how far they can be trusted, and how to build timelines from them.</p><p class="chips"><span>Registry</span><span>NTFS</span><span>EVTX</span><span>Memory</span></p></div>
+      <div class="card">{{ px.icon('bug', 40) }}<h3>Malware</h3><p>Static and dynamic analysis and reverse engineering of public samples, in an isolated lab.</p><p class="chips"><span>PE</span><span>Ghidra</span><span>x64dbg</span><span>YARA</span></p></div>
+      <div class="card">{{ px.icon('tool', 40) }}<h3>Tools</h3><p>Small open-source tools for acquisition, timelines and evidence handling, built for the lab work.</p><p class="chips"><span>Python</span><span>Automation</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    {% call px.window('CASE LOG') %}
+      {% if writeups or tools %}
+        {{ rows(writeups + tools) }}
+      {% else %}
+        <p class="empty">▶ The first writeups and tools are on their way.</p>
+      {% endif %}
+    {% endcall %}
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="section-title"><span class="hash">#</span> How work is published</h2>
+    <ol class="steps" role="list">
+      <li><span class="step-n">01</span><h3>Question</h3><p>Each piece starts with one stated question and its scope.</p></li>
+      <li><span class="step-n">02</span><h3>Lab setup</h3><p>My own lab environments, public samples and pinned tool versions.</p></li>
+      <li><span class="step-n">03</span><h3>Experiment</h3><p>Observations recorded, outputs hashed, interpretation kept separate.</p></li>
+      <li><span class="step-n">04</span><h3>Publish</h3><p>Method, data and limitations published, with an ID for the longer pieces.</p></li>
+    </ol>
+  </div>
+</section>
+{% endblock %}

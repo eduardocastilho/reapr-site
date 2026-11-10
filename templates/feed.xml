@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.title }} — Writeups</title>
+  <link href="{{ site.url }}{{ base }}/"/>
+  <link rel="self" href="{{ site.url }}{{ base }}/feed.xml"/>
+  <id>{{ site.url }}{{ base }}/</id>
+  <updated>{{ build_date }}T00:00:00Z</updated>
+  <author><name>{{ site.author }}</name></author>
+  {% for e in writeups %}
+  <entry>
+    <title>{% if e.meta.get('id') %}{{ e.meta.id }} · {% endif %}{{ e.meta.title }}</title>
+    <link href="{{ site.url }}{{ e.url }}"/>
+    <id>{{ site.url }}{{ e.url }}</id>
+    <updated>{{ e.date | isodate }}T00:00:00Z</updated>
+    <summary>{{ e.meta.get('summary', '') }}</summary>
+  </entry>
+  {% endfor %}
+</feed>

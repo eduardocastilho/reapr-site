@@ -1,0 +1,53 @@
+{% import "_pixel.html" as px %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ site.title }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#120D22">
+<link rel="icon" href="{{ base }}/static/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }} writeups" href="{{ base }}/feed.xml">
+<link rel="preload" href="{{ base }}/static/fonts/PixelifySans-Medium.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="{{ base }}/static/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="{{ base }}/" aria-label="reapr home">
+      {% if site.avatar %}<img class="brand-avatar" src="{{ base }}/static/{{ site.avatar }}" alt="" width="36" height="36">{% endif %}
+      <span class="brand-word">reapr<span class="cursor" aria-hidden="true">_</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="{{ base }}/writeups/"{% if nav == 'writeups' %} aria-current="page"{% endif %}>Writeups</a>
+      <a href="{{ base }}/tools/"{% if nav == 'tools' %} aria-current="page"{% endif %}>Tools</a>
+      <a href="{{ base }}/about/"{% if nav == 'about' %} aria-current="page"{% endif %}>About</a>
+      {% if site.github %}<a href="{{ site.github }}" rel="noopener">GitHub</a>{% endif %}
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="ground" aria-hidden="true"></div>
+  <div class="wrap footer-inner">
+    <div class="footer-row">
+      <p class="footer-brand"><span class="brand-word small">reapr<span class="cursor" aria-hidden="true">_</span></span> <span class="muted">Eduardo Castilho</span></p>
+      <p class="footer-links">
+        {% if site.github %}<a href="{{ site.github }}" rel="noopener">GitHub</a>{% endif %}
+        {% if site.linkedin %}<a href="{{ site.linkedin }}" rel="noopener">LinkedIn</a>{% endif %}
+        {% if site.email %}<a href="mailto:{{ site.email }}">Email</a>{% endif %}
+        <a href="{{ base }}/feed.xml">Feed</a>
+      </p>
+    </div>
+    <p class="statement">REAPR Labs is the personal lab of Eduardo Castilho (reapr). Everything here is developed independently, in self-built lab environments with public datasets and public samples, and published with its methods and data. Views are my own.</p>
+  </div>
+</footer>
+</body>
+</html>

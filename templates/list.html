@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "_pixel.html" as px %}
+{% from "_index_rows.html" import rows %}
+{% block title %}{{ heading }} · {{ site.title }}{% endblock %}
+{% block main %}
+<section class="page-head">
+  <div class="wrap">
+    <p class="label">{% if heading == 'Tools' %}{{ px.icon('chip', 24) }}{% else %}{{ px.icon('scroll', 24) }}{% endif %} {{ heading }}</p>
+    <h1>{{ heading }}</h1>
+    <p class="lede">{{ intro }}</p>
+  </div>
+</section>
+<section class="tight">
+  <div class="wrap">
+    {% call px.window(heading | upper ~ ' · ' ~ entries | length ~ ' ENTRIES') %}
+      {% if entries %}{{ rows(entries) }}{% else %}<p class="empty">▶ {{ empty }}</p>{% endif %}
+    {% endcall %}
+  </div>
+</section>
+{% endblock %}

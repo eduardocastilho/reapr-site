@@ -1,0 +1,40 @@
+{# Ícones em pixel art, originais, desenhados em grade 16x16. #}
+{% macro icon(name, size=32) -%}
+<svg class="px-icon" width="{{ size }}" height="{{ size }}" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+{% if name == 'lens' %}
+<path fill="var(--bone)" d="M5 1h5v1H5zM3 2h2v1H3zM10 2h2v1h-2zM2 3h1v2H2zM12 3h1v2h-1zM1 5h1v5H1zM13 5h1v5h-1zM2 10h1v2H2zM12 10h1v1h-1zM3 12h2v1H3zM10 12h2v1h-2zM5 13h5v1H5z"/>
+<path fill="var(--violet)" d="M4 4h2v1H4zM3 5h1v2H3z"/>
+<path fill="var(--bone)" d="M12 11h1v1h-1zM13 12h1v1h-1zM14 13h1v2h-1zM13 14h1v1h-1z"/>
+{% elif name == 'disk' %}
+<path fill="var(--hood)" d="M1 1h12l2 2v12H1z"/>
+<path fill="var(--bone)" d="M4 1h7v5H4z"/>
+<path fill="var(--void)" d="M8 2h2v3H8z"/>
+<path fill="var(--text)" d="M3 9h10v5H3z"/>
+<path fill="var(--muted)" d="M4 10h8v1H4zM4 12h6v1H4z"/>
+{% elif name == 'bug' %}
+<path fill="var(--bone)" d="M6 2h1v1H6zM9 2h1v1H9zM7 3h2v1H7zM5 4h6v2H5zM4 6h8v6H4zM5 12h6v1H5zM6 13h4v1H6z"/>
+<path fill="var(--void)" d="M8 6h1v7H8z"/>
+<path fill="var(--magenta)" d="M5 8h2v2H5zM10 8h1v2h-1z"/>
+<path fill="var(--bone)" d="M2 6h2v1H2zM1 9h3v1H1zM2 12h2v1H2zM12 6h2v1h-2zM12 9h3v1h-3zM12 12h2v1h-2z"/>
+{% elif name == 'chip' %}
+<path fill="var(--hood)" d="M3 3h10v10H3z"/>
+<path fill="var(--bone)" d="M5 5h6v6H5z"/>
+<path fill="var(--void)" d="M7 7h2v2H7z"/>
+<path fill="var(--muted)" d="M5 1h1v2H5zM8 1h1v2H8zM11 1h1v2h-1zM5 13h1v2H5zM8 13h1v2H8zM11 13h1v2h-1zM1 5h2v1H1zM1 8h2v1H1zM1 11h2v1H1zM13 5h2v1h-2zM13 8h2v1h-2zM13 11h2v1h-2z"/>
+{% elif name == 'scroll' %}
+<path fill="var(--bone)" d="M3 1h10v14H3z"/>
+<path fill="var(--bone-dim)" d="M3 1h1v14H3z"/>
+<path fill="var(--void)" d="M5 3h6v1H5zM5 5h6v1H5zM5 7h4v1H5zM5 9h6v1H5zM5 11h5v1H5z"/>
+{% elif name == 'tool' %}
+<path fill="var(--bone)" d="M10 1h3v1h-3zM9 2h1v3H9zM13 2h1v1h-1zM12 3h1v1h-1zM10 5h3v1h-3zM8 5h2v2H8zM7 7h2v2H7zM6 9h2v2H6zM5 11h2v2H5zM3 12h2v2H3z"/>
+<path fill="var(--violet)" d="M2 13h2v2H2z"/>
+{% endif %}
+</svg>
+{%- endmacro %}
+
+{% macro window(title, extra_class='') -%}
+<div class="win {{ extra_class }}">
+  <div class="win-bar"><span>{{ title }}</span><span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+  <div class="win-body">{{ caller() }}</div>
+</div>
+{%- endmacro %}

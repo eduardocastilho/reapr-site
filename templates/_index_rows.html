@@ -1,0 +1,14 @@
+{% macro rows(entries) %}
+<ol class="log" role="list">
+{% for e in entries %}
+  <li>
+    <a class="log-row" href="{{ e.url }}">
+      <span class="log-arrow" aria-hidden="true">▶</span>
+      <span class="log-id">{% if e.section == 'tools' %}{{ e.meta.get('version', 'tool') }}{% else %}{{ e.meta.get('id', 'NOTE') }}{% endif %}</span>
+      <span class="log-title">{{ e.meta.title }}{% if e.meta.get('draft') %} <span class="tag">DRAFT</span>{% endif %}</span>
+      <span class="log-meta">{% if e.section == 'tools' %}{{ e.meta.status }}{% else %}{{ e.meta.kind_label }} · {{ e.date | isodate }}{% endif %}</span>
+    </a>
+  </li>
+{% endfor %}
+</ol>
+{% endmacro %}

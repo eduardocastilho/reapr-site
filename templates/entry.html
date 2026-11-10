@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% import "_pixel.html" as px %}
+{% block title %}{% if e.meta.get('id') %}{{ e.meta.id }} · {% endif %}{{ e.meta.title }} · {{ site.title }}{% endblock %}
+{% block description %}{{ e.meta.get('summary', site.description) }}{% endblock %}
+{% block main %}
+<article class="entry">
+  <header class="entry-head">
+    <div class="wrap">
+      <a class="back" href="{{ base }}/{{ e.section }}/">◀ {{ e.section | capitalize }}</a>
+      <p class="entry-id">
+        {% if e.section == 'tools' %}{{ px.icon('chip', 28) }}<span class="label">Tool</span>{% else %}{{ px.icon('disk', 28) }}<span class="id-big">{{ e.meta.get('id', 'NOTE') }}</span><span class="label">{{ e.meta.kind_label }}</span>{% endif %}
+        {% if e.meta.get('draft') %}<span class="tag">DRAFT</span>{% endif %}
+      </p>
+      <h1>{{ e.meta.title }}</h1>
+      {% if e.meta.get('summary') %}<p class="lede">{{ e.meta.summary }}</p>{% endif %}
+      <dl class="facts">
+        {% if e.section == 'tools' %}
+          <div><dt>Status</dt><dd>{{ e.meta.status }}</dd></div>
+          {% if e.meta.get('version') %}<div><dt>Version</dt><dd>{{ e.meta.version }}</dd></div>{% endif %}
+          {% if e.meta.get('license') %}<div><dt>License</dt><dd>{{ e.meta.license }}</dd></div>{% endif %}
+          {% if e.meta.get('language') %}<div><dt>Language</dt><dd>{{ e.meta.language }}</dd></div>{% endif %}
+        {% else %}
+          <div><dt>Published</dt><dd>{{ e.date | isodate }}</dd></div>
+          {% if e.meta.get('updated') %}<div><dt>Updated</dt><dd>{{ e.meta.updated }}</dd></div>{% endif %}
+          {% if e.meta.get('area') %}<div><dt>Area</dt><dd>{{ e.meta.area }}</dd></div>{% endif %}
+          {% if e.meta.get('environment') %}<div><dt>Environment</dt><dd>{{ e.meta.environment }}</dd></div>{% endif %}
+        {% endif %}
+        {% if e.meta.get('repo') %}<div><dt>{% if e.section == 'tools' %}Source{% else %}Reproduce{% endif %}</dt><dd><a href="{{ e.meta.repo }}" rel="noopener">{{ e.meta.repo | replace('https://github.com/', '') }}</a></dd></div>{% endif %}
+      </dl>
+    </div>
+  </header>
+
+  <div class="wrap entry-body-wrap">
+    {% if e.toc_html and '<li>' in e.toc_html %}
+    <nav class="contents" aria-label="Contents">
+      <p class="label">Contents</p>
+      {{ e.toc_html | safe }}
+    </nav>
+    {% endif %}
+    <div class="prose">
+      {{ e.body_html | safe }}
+      <p class="end-line" aria-hidden="true">— end of file —</p>
+    </div>
+  </div>
+</article>
+{% endblock %}

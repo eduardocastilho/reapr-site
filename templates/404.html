@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Not found · {{ site.title }}{% endblock %}
+{% block main %}
+<section class="page-head">
+  <div class="wrap">
+    <p class="label">Error 404</p>
+    <h1>File not found in this image.</h1>
+    <p class="lede">The page may have moved. Start from the <a href="{{ base }}/writeups/">writeups</a> or the <a href="{{ base }}/tools/">tools</a>.</p>
+  </div>
+</section>
+{% endblock %}
